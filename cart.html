@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keranjang - Toko Yogurt</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .cart-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .cart-header h2 {
+            margin: 0;
+            color: #007bff;
+        }
+        
+        .cart-items {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cart-item h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .cart-item p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .cart-summary {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            text-align: right;
+        }
+        
+        .cart-summary h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .cart-summary p {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        
+        .checkout-button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .remove-button {
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .remove-button:hover {
+            background-color: #e60000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Toko Yogurt</h1>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+    </div>
+    <div class="main">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Keranjang</h2>
+                <button class="checkout-button" onclick="checkout()">Checkout</button>
+            </div>
+            <ul class="cart-items" id="cart-items">
+                <!-- Daftar barang di keranjang akan ditampilkan di sini -->
+            </ul>
+            <div class="cart-summary">
+                <h3>Ringkasan Pesanan</h3>
+                <p id="total-price">Total: Rp 0</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Toko Yogurt. Hak Cipta Dilindungi.</p>
+    </div>
+    <script>
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItems = document.getElementById("cart-items");
+            const totalPriceEl = document.getElementById("total-price");
+            cartItems.innerHTML = "";
+            let total = 0;
+            cart.forEach((item, index) => {
+                const listItem = document.createElement("li");
+                listItem.className = "cart-item";
+                listItem.innerHTML = `
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>Rp ${item.price}</p>
+                    </div>
+                    <button class="remove-button" onclick="removeFromCart(${index})">Hapus</button>
+                `;
+                cartItems.appendChild(listItem);
+                total += item.price;
+            });
+            totalPriceEl.textContent = `Total: Rp ${total}`;
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCart();
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart.length === 0) {
+                alert("Keranjang kosong.");
+                return;
+            }
+            const orderDetails = cart
+                .map((item) => `${item.name} - Rp ${item.price}`)
+                .join("\n");
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const message = `Detail Pesanan:\n${orderDetails}\nTotal: Rp ${total}`;
+            const phoneNumber = "62895341009049"; // Nomor WhatsApp penerima
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(
+          message
+        )}`;
+            window.location.href = whatsappUrl;
+        }
+
+        window.onload = displayCart;
+    </script>
+</body>
+
+</html>

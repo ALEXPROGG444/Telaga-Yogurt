@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel Admin - Toko Yogurt</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .admin-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .admin-header h2 {
+            color: #007bff;
+            margin: 0;
+        }
+        
+        .admin-content {
+            margin-bottom: 20px;
+        }
+        
+        .admin-content h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        
+        .admin-content p {
+            color: #666;
+        }
+        
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .admin-form label {
+            color: #333;
+        }
+        
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .admin-form button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Panel Admin</h1>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+        <a href="admin.html">Admin</a>
+    </div>
+    <div class="main">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2>Dashboard Admin</h2>
+            </div>
+            <div class="admin-content">
+                <h3>Kelola Produk</h3>
+                <form class="admin-form" action="admin_manage_products.php" method="post">
+                    <label for="product-name">Nama Produk:</label>
+                    <input type="text" id="product-name" name="product-name" required />
+                    <label for="product-price">Harga Produk:</label>
+                    <input type="number" id="product-price" name="product-price" required />
+                    <label for="product-flavor">Varian Rasa:</label>
+                    <select id="product-flavor" name="product-flavor" required>
+              <option value="Stroberi">Stroberi</option>
+              <option value="Mangga">Mangga</option>
+              <option value="Blueberry">Blueberry</option>
+              <option value="Original">Original</option>
+              <option value="Coklat">Coklat</option>
+              <option value="Leci">Leci</option>
+            </select>
+                    <label for="product-image">URL Gambar Produk:</label>
+                    <input type="text" id="product-image" name="product-image" required />
+                    <button type="submit">Tambah Produk</button>
+                </form>
+            </div>
+            <div class="admin-content">
+                <h3>Kelola Pesanan</h3>
+                <p>Periksa dan proses pesanan pelanggan di sini.</p>
+                <!-- Tambahkan fitur manajemen pesanan di sini -->
+            </div>
+            <div class="admin-content">
+                <h3>Kelola Pengguna</h3>
+                <p>Kelola akun pengguna di sini.</p>
+                <!-- Tambahkan fitur manajemen pengguna di sini -->
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Toko Yogurt. Hak Cipta Dilindungi.</p>
+    </div>
+</body>
+
+</html>

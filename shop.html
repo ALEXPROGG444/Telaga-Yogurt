@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Belanja - TELAGA YOGURT</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>TELAGA YOGURT</h1>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+    </div>
+    <div class="main">
+        <h2>Belanja</h2>
+        <p>Jelajahi pilihan yogurt lezat kami.</p>
+        <div class="products">
+            <div class="product" style="background-color: #ffcccc">
+                <img src="stroberi.jpg" alt="Yogurt Stroberi" />
+                <h3>Yogurt Stroberi</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Stroberi', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+            <div class="product" style="background-color: #fff2cc">
+                <img src="mangga.jpg" alt="Yogurt Mangga" />
+                <h3>Yogurt Mangga</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Mangga', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+            <div class="product" style="background-color: #ccccff">
+                <img src="blueberry.jpg" alt="Yogurt Blueberry" />
+                <h3>Yogurt Blueberry</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Blueberry', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+            <div class="product" style="background-color: #f2e6d9">
+                <img src="original.jpg" alt="Yogurt Original" />
+                <h3>Yogurt Original</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Original', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+            <div class="product" style="background-color: #d9b3ff">
+                <img src="coklat.jpg" alt="Yogurt Coklat" />
+                <h3>Yogurt Coklat</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Coklat', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+            <div class="product" style="background-color: #e6ffe6">
+                <img src="leci.jpg" alt="Yogurt Leci" />
+                <h3>Yogurt Leci</h3>
+                <p>Harga: Rp 8.000</p>
+                <button onclick="addToCart('Yogurt Leci', 8000)">
+            Tambah ke Keranjang
+          </button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Toko Yogurt. Hak Cipta Dilindungi.</p>
+    </div>
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({
+                name,
+                price,
+            });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(name + " telah ditambahkan ke keranjang.");
+        }
+    </script>
+</body>
+
+</html>

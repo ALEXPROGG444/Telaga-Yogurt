@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - TELAGA YOUGURT</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>TELAGA YOGURT</h1>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+    </div>
+    <div class="main">
+        <h2>Login</h2>
+        <div id="g_id_onload" data-client_id="YOUR_CLIENT_ID" data-context="signin" data-ux_mode="popup" data-login_uri="http://localhost:8000/login" data-auto_prompt="false"></div>
+
+        <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="outline" data-text="sign_in_with" data-size="large" data-logo_alignment="left"></div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Toko Yogurt. Hak Cipta Dilindungi.</p>
+    </div>
+    <script>
+        function handleCredentialResponse(response) {
+            const data = JSON.parse(atob(response.credential.split(".")[1]));
+            console.log("ID: " + data.sub);
+            console.log("Full Name: " + data.name);
+            console.log("Given Name: " + data.given_name);
+            console.log("Family Name: " + data.family_name);
+            console.log("Image URL: " + data.picture);
+            console.log("Email: " + data.email);
+            // Proses login dengan data yang diperoleh dari Google
+        }
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "YOUR_CLIENT_ID",
+                callback: handleCredentialResponse,
+            });
+            google.accounts.id.renderButton(
+                document.querySelector(".g_id_signin"), {
+                    theme: "outline",
+                    size: "large",
+                }
+            );
+        };
+    </script>
+</body>
+
+</html>

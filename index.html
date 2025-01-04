@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TELAGA YOGURT</title>
+    <img src="Toko Yogurt.jpg" alt="Header Image" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .product img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .admin-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            /* Membuat tombol hampir tidak terlihat */
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        
+        .admin-button:hover {
+            color: #ffdd57;
+        }
+        
+        .admin-login {
+            display: none;
+            /* Disembunyikan secara default */
+            position: absolute;
+            top: 40px;
+            right: 10px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+        
+        .admin-login input {
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: calc(100% - 12px);
+            /* Mengakomodasi padding */
+        }
+        
+        .admin-login button {
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            padding: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .admin-login button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>TELAGA YOGURT</h1>
+        <button class="admin-button" onclick="showAdminLogin()">Admin</button>
+        <div class="admin-login" id="admin-login">
+            <input type="password" id="admin-password" placeholder="Password" />
+            <button onclick="authenticateAdmin()">Login</button>
+        </div>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+        <a href="outlets.html">Outlet Kami</a>
+    </div>
+    <div class="main">
+        <h2>Selamat Datang di TOKO ONLINE KAMI!</h2>
+        <p>Temukan yogurt lezat dan sehat kami.</p>
+        <div class="products" id="products">
+            <!-- Produk terbaru akan ditampilkan di sini -->
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; @2025 TELAGA YOGURT. Hak Cipta Dilindungi.</p>
+    </div>
+    <script>
+        function loadProducts() {
+            fetch("products.json")
+                .then((response) => response.json())
+                .then((products) => {
+                    const productContainer = document.getElementById("products");
+                    productContainer.innerHTML = "";
+
+                    // Menampilkan hingga 3 produk terbaru
+                    for (let i = 0; i < Math.min(products.length, 3); i++) {
+                        const product = products[i];
+                        const productElement = document.createElement("div");
+                        productElement.className = "product";
+                        productElement.style.backgroundColor = getProductColor(
+                            product.flavor
+                        );
+                        productElement.innerHTML = `
+                            <img src="${product.image}" alt="Yogurt ${product.flavor}">
+                            <h3>Yogurt ${product.flavor}</h3>
+                            <p>Harga: Rp ${product.price}</p>
+                            <button onclick="addToCart('${product.name}', ${product.price})">Tambah ke Keranjang</button>
+                        `;
+                        productContainer.appendChild(productElement);
+                    }
+                });
+        }
+
+        function getProductColor(flavor) {
+            switch (flavor) {
+                case "Stroberi":
+                    return "#ffcccc";
+                case "Mangga":
+                    return "#fff2cc";
+                case "Blueberry":
+                    return "#ccccff";
+                case "Original":
+                    return "#f2e6d9";
+                case "Coklat":
+                    return "#d9b3ff";
+                case "Leci":
+                    return "#e6ffe6";
+                default:
+                    return "#fff";
+            }
+        }
+
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({
+                name,
+                price,
+            });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(name + " telah ditambahkan ke keranjang.");
+        }
+
+        function showAdminLogin() {
+            const adminLogin = document.getElementById("admin-login");
+            adminLogin.style.display = "block";
+        }
+
+        function authenticateAdmin() {
+            const password = document.getElementById("admin-password").value;
+            if (password === "adminyogurt321") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Password salah.");
+            }
+        }
+
+        window.onload = function() {
+            loadProducts();
+            setTitleImage();
+        };
+
+        function setTitleImage() {
+            const link = document.createElement("link");
+            link.rel = "icon";
+            link.href = "favicon.ico"; // Ganti dengan URL gambar yang sesuai
+            document.head.appendChild(link);
+        }
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Website</title>
+    <style>
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #f3f3f3;
+        }
+        
+        img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body></body>
+
+</html>

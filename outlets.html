@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outlet Kami - Toko Yogurt</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .outlet-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .outlet-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .outlet-header h2 {
+            color: #007bff;
+            margin: 0;
+        }
+        
+        .outlet-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .outlet-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .outlet-item h3 {
+            color: #007bff;
+            margin: 0 0 10px 0;
+        }
+        
+        .outlet-item p {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Toko Yogurt</h1>
+        <button class="admin-button" onclick="showAdminLogin()">Admin</button>
+        <div class="admin-login" id="admin-login">
+            <input type="password" id="admin-password" placeholder="Password" />
+            <button onclick="authenticateAdmin()">Login</button>
+        </div>
+    </div>
+    <div class="nav">
+        <a href="index.html">Beranda</a>
+        <a href="shop.html">Belanja</a>
+        <a href="account.html">Akun Saya</a>
+        <a href="cart.html">Keranjang</a>
+        <a href="login.html">Login</a>
+        <a href="outlets.html">Outlet Kami</a>
+    </div>
+    <div class="main">
+        <div class="outlet-container">
+            <div class="outlet-header">
+                <h2>Outlet Kami</h2>
+            </div>
+            <ul class="outlet-list">
+                <li class="outlet-item">
+                    <h3>Outlet Jakarta</h3>
+                    <p>Alamat: Jl. Sudirman No. 45, Jakarta</p>
+                    <p>Telepon: (021) 12345678</p>
+                </li>
+                <li class="outlet-item">
+                    <h3>Outlet Bandung</h3>
+                    <p>Alamat: Jl. Asia Afrika No. 30, Bandung</p>
+                    <p>Telepon: (022) 23456789</p>
+                </li>
+                <li class="outlet-item">
+                    <h3>Outlet Surabaya</h3>
+                    <p>Alamat: Jl. Gubeng No. 20, Surabaya</p>
+                    <p>Telepon: (031) 34567890</p>
+                </li>
+                <!-- Tambahkan lebih banyak outlet sesuai kebutuhan -->
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Toko Yogurt. Hak Cipta Dilindungi.</p>
+    </div>
+    <script>
+        function showAdminLogin() {
+            const adminLogin = document.getElementById("admin-login");
+            adminLogin.style.display = "block";
+        }
+
+        function authenticateAdmin() {
+            const password = document.getElementById("admin-password").value;
+            if (password === "adminyogurt321") {
+                window.location.href = "admin.html";
+            } else {
+                alert("Password salah.");
+            }
+        }
+    </script>
+</body>
+
+</html>
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Outlet Kami - Toko Yogurt</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .outlet-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .outlet-header {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .outlet-header h2 {
+            color: #007bff;
+            margin: 0;
+        }
+        
+        .outlet-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .outlet-item {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        
+        .outlet-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            margin-right: 20px;
+        }
+        
+        .outlet-item h3 {
+            color: #007bff;
+            margin: 0 0 10px 0;
+        }
+        
+        .outlet-item p {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header"></div>
+</body>
+
+</html>
